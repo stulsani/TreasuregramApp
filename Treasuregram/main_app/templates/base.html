@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+      href="{% static 'style.css' %}" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Treasuregram</title>
+
+</head>
+<body>
+
+    <a href="/"> <h1>TreasureGram</h1> </a>
+    {% if user.is_authenticated %}
+        <div class="topright">
+            <a href = "/addform"> Add New Treasure </a>
+            <a href = "{% url 'profile' user.username %}"> {{ user.username }} </a>
+            <a href = "{% url 'logout' %}"> LogOut </a>
+        </div>
+    {% else %}
+        <div class="topright"> <a href = "{% url 'login' %}"> Log In </a> </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
